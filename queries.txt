@@ -1,0 +1,30 @@
+ CREATE TABLE Author_TBL
+    (
+    Author_code NUMBER(5) PRIMARY KEY,
+    Author_name VARCHAR2(20) NOT NULL,
+    Contact_no NUMBER(10)
+    );
+  
+ INSERT INTO Author_TBL VALUES(1, 'RobinSharma', 8800799224);
+ INSERT INTO Author_TBL VALUES(2, 'R.K.Narayan', 9971935000);
+ INSERT INTO Author_TBL VALUES(3, 'Paulo Coelho', 1234567890);
+  
+  
+  CREATE TABLE Book_TBL
+    (
+    ISBN VARCHAR2(10) PRIMARY KEY,
+    Book_title VARCHAR2(20) NOT NULL,
+    Book_type CHAR(1) CHECK (Book_type IN('G', 'T')),
+    Author_code NUMBER(5) NOT NULL REFERENCES Author_TBL(Author_code),
+    Book_cost NUMBER(8,2) NOT NULL
+    );
+    
+    
+  BookDAO.java
+  INSERT INTO Book_TBL VALUES(?,?,?,?,?)
+  SELECT * FROM Book_TBL WHERE isbn = ?
+  
+  
+  AuthorDAO.java
+  SELECT * FROM Author_TBL WHERE Author_Code = ?
+  SELECT * FROM Author_TBL WHERE Author_name = ?
